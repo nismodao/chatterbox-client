@@ -3,17 +3,20 @@
 var app = {};
 var counter = 0;
 
+app.currRoom = "All Rooms";
 
 app.server = 'https://api.parse.com/1/classes/messages';
 
 app.init = function() {
+  // listen for click on username
   $(".username").click(function (e) {
-  e.preventDefault();
+    e.preventDefault();
     var userName = $(this).html();
     console.log(app.addFriend);
     app.addFriend(userName);
   });
 
+  //listen for submit button click
   $('#send .submit').click(function(event) {
     event.preventDefault();
     console.log('submittttting');
@@ -22,6 +25,14 @@ app.init = function() {
     app.handleSubmit(message);
   });  
 
+  //listen for selection of room name
+  $('#roomselect').on('change', function() {
+    var rmName = $('#roomselect option:selected').text();
+    app.currRoom = rmName;
+    app.clearMessages();
+    app.fetch();
+
+  });
 
 };
 
@@ -96,14 +107,21 @@ app.addFriend = function (friendName) {
 
 app.handleSubmit = function( message ) {
   var messageObject = {};
-  messageObject.message = message;
-  messageObject.room
-  
+  messageObject.text = message;
+  messageObject.roomname = roomname;
+  messageObject.user = user;
+  app.send(messageObject);
+
 };
 
 var parseData = function (data) {
   console.log("Data is",data);
-  data.results.forEach(function(value) {
+  
+  var filteredRoom = _.reject(data.results, function(element) {
+    return element.roomname !== app.currRoom;
+  });
+
+  filteredRoom.forEach(function(value) {
     app.addMessage(value);
   });
 }; 
