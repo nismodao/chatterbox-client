@@ -7,13 +7,14 @@ var counter = 0;
 app.server = 'https://api.parse.com/1/classes/messages';
 
 app.init = function() {
-  $(".username").click(function () { 
+  $(".username").click(function (e) {
+  e.preventDefault();
     var userName = $(this).html();
     console.log(app.addFriend);
     app.addFriend(userName);
   });
 
-  $('#send .submit').submit(function(event) {
+  $('#send .submit').click(function(event) {
     event.preventDefault();
     console.log('submittttting');
     counter++;
@@ -35,6 +36,7 @@ app.send = function(message) {
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Message sent');
+      console.log("Message sent is", data);
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -52,6 +54,7 @@ app.fetch = function() {
     contentType: 'application/json',
     success: function (data) {
       console.log('chatterbox: Data received');
+      parseData(data);
     },
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
@@ -70,9 +73,11 @@ app.addMessage = function(message) {
   var room = message.roomname;
 
   var $chat = $('<div class=message>' + 
-      '<span class=username>' + user + '</span>' + ':\n' + 
-      '<p class=msg>' + text + '</p>' + 
+      '<span class=username>' + '</span>' + ':\n' + 
+      '<p class=msg>' + '</p>' + 
     '</div>');
+  $chat.find('.username').text(user);
+  $chat.find('.msg').text(text);
   $chat.appendTo('#chats');
   // $('#chats').append('<span></span>');
 };
@@ -90,9 +95,24 @@ app.addFriend = function (friendName) {
 };
 
 app.handleSubmit = function( message ) {
-
-  app.send(message);
+  var messageObject = {};
+  messageObject.message = message;
+  messageObject.room
+  
 };
+
+var parseData = function (data) {
+  console.log("Data is",data);
+  data.results.forEach(function(value) {
+    app.addMessage(value);
+  });
+}; 
+
+$("#refresh").click(function () {
+  app.clearMessages();
+  app.fetch();
+});
+
 
 app.init();
 
