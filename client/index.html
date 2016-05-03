@@ -17,14 +17,13 @@
       <button id = "refresh"> Refresh </button>
      <div id ="room"> 
       <select id="roomselect">
-        <option value="">All Rooms</option>
-        <option value="">Milk</option>
-        <option value="">Old Cheese</option>
-        <option value="">Hot Bread</option>
+        <option selected value="">All Rooms</option>
       </select>
       </div>
   
       <h1>chatterbox</h1>
+      <h2>Username: <span id='currentUser'>Anonymous</span></h2>
+      <h2>Current Room: <span id='currentRoom'>All Rooms</span></h2>
 
       <form id = "send">
         <input id="message" type = "text" placeholder="What's on your mind">
@@ -32,8 +31,22 @@
           </button>
         </input>
       </form>
+
+      <form id = "user">
+        <input id="name" type = "text" placeholder="What is your name">
+          <button class= "chooseName" type = "" value ="" > Name 
+          </button>
+        </input>
+      </form>
+
+      <form id = "room">
+        <input id="joinRoom" type = "text" placeholder="Create a room">
+          <button class= "chooseRoom" type = "" value ="" > Room 
+          </button>
+        </input>
+      </form>
       <!-- Your HTML goes here! -->
-      <div class = "username">JJ Wyatt</div>
+      <div class = "username">Friend List</div>
     </div>
     <div id="chats"></div>
     <div id="roomSelect"></div>
