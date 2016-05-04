@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <title>chatterbox</title>
     <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- dependencies -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
@@ -11,47 +12,60 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <!-- your scripts -->
     <script src="env/config.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
   </head>
   <body>
+  <div class = 'container'>
+    <nav class="navbar navbar-default">
+      <button id = "refresh" class = 'btn btn-success'> Refresh </button>
+        <select id="roomselect">
+          <option selected value="">All Rooms</option>
+        </select>  
+
+             <form id = "user" class = "navbar-form navbar-right">
+                <input id="name" class='form-control' type = "text" placeholder="What is your name">
+                <button class= "chooseName btn btn-success" type = "" value ="" > Name 
+          </button>
+        </input>
+      </form>
+
+      <form id = "room" class = "navbar-form navbar-right">
+        <input id="joinRoom" class='form-control' type = "text" placeholder="Create a room">
+          <button class= "chooseRoom btn btn-success" type = "" value ="" > Room 
+          </button>
+        </input>
+
+      </form>
+      <p>Username: <span id='currentUser'>Anonymous</span></p>
+          <p>Current Room: <span id='currentRoom'>All Rooms</span></p>
+    </nav>
+    <div class = 'jumbotron main'>  
+
     <div id="main">
-      <button id = "refresh"> Refresh </button>
      <div id ="room"> 
-      <select id="roomselect">
-        <option selected value="">All Rooms</option>
-      </select>
+      
       </div>
   
       <h1>chatterbox</h1>
-      <h2>Username: <span id='currentUser'>Anonymous</span></h2>
-      <h2>Current Room: <span id='currentRoom'>All Rooms</span></h2>
 
       <form id = "send">
-        <input id="message" type = "text" placeholder="What's on your mind">
-          <button class='submit' type = 'submit' value ="Submit"> Submit 
+        <input id="message" class='form-control' type = "text" placeholder="What's on your mind">
+          <button class='submit btn btn-success' type = 'submit' value ="Submit"> Submit 
           </button>
         </input>
       </form>
 
-      <form id = "user">
-        <input id="name" type = "text" placeholder="What is your name">
-          <button class= "chooseName" type = "" value ="" > Name 
-          </button>
-        </input>
-      </form>
-
-      <form id = "room">
-        <input id="joinRoom" type = "text" placeholder="Create a room">
-          <button class= "chooseRoom" type = "" value ="" > Room 
-          </button>
-        </input>
-      </form>
+      
       <!-- Your HTML goes here! -->
       <div class = "username">Friend List</div>
     </div>
+  </div>
     <div id="chats"></div>
+
+
     <div id="roomSelect"></div>
 
-    
+</div>    
   </body>
     <script src="scripts/app.js"></script>
 </html>

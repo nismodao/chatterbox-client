@@ -102,8 +102,8 @@ app.addMessage = function(message) {
   var text = message.text;
   var user = message.username;
   var room = message.roomname;
-
-  var $chat = $('<div class=message>' + 
+  console.log("text is",text);
+  var $chat = $('<div class=\"message jumbotron\">' + 
       '<span class=username>' + '</span>' + ':\n' + 
       '<p class=msg>' + '</p>' + 
     '</div>');
